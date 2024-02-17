@@ -7,6 +7,20 @@ from rdkit import Chem
 error_log = os.path.join(os.getcwd(), 'error_log.txt')
 
 def custom_sanitization(pdb_ID, molecule, u, atom_index, depth=0, max_depth=25):
+    '''
+    Inputs:
+    `pdb_ID`: unique identifier for PPI
+    `molecule`: RDKit molecular representation we want to modify
+    `u`: MDAnalysis Universe object we want to modify
+    `atom index`: Unique atom index from RDKit where the valence error occurs. You obtain this by parsing the error message string
+    `depth`: Current depth for recursion
+    `max_depth`: breaking condition for recursion. If the function fails to sanitize your molecule after 25 iterations, you have some
+                 serious issues with your file and custom sanitization fails. Sorry!
+
+    Outputs:
+    `molecule`: The updated RDKit molecule with erroneous covalent bonds removed
+    `u`: The updated MDAnalysis Universe object with erroneous covalent bonds removed.
+    '''
     # The problematic_atom has a valence greater than permitted due to erroneous bond(s)
     problematic_atom = molecule.GetAtomWithIdx(atom_index)
     print(problematic_atom.GetFormalCharge())
