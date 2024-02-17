@@ -18,6 +18,7 @@ The current approach uses a recursive call to `custom_sanitization()` with a dep
 ```
 import json
 import re
+import MDAnalysis as mda
 from rdkit import Chem
 ```
 
