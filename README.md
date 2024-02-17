@@ -16,18 +16,18 @@ The current approach uses a recursive call to `custom_sanitization()` with a dep
 ###########################################################################################################
 # USAGE:
 In your process of digitizing your first molecule and performing analysis on it with either RDKit of MDAnalysis, you will do something like: 
-'''
+```
  # Create MD Universe objects from pdb_file. Utilze the in-built method for determining covalent bonds
  u = mda.Universe(pdb_file, guess_bonds=True)
 
  # Create rdkit molecule from pdb_file while preserving explicit hydrogen atoms
  rdkit = Chem.MolFromPDBFile(pdb_file, removeHs=False, sanitize=False) 
-'''
+```
 
 Perhaps, as I did, you want to utilize both MDA and RDKit representations for the various useful methods present in each library. Great! As I mentioned earlier, MDAnalysis does not have built-in functions for sanitizing molecules. It is only RDKit that will complain about the valence issues if they exist. This could be an oversight if you plan to just use MDAnalysis.
 
 Anyways, you decide to proceed with sanitization:
-'''
+```
  # Manually sanitize the molecules
  try:
    Chem.SanitizeMol(rdkit, sanitizeOps=Chem.SanitizeFlags.SANITIZE_ALL)
@@ -39,6 +39,6 @@ Anyways, you decide to proceed with sanitization:
    match = re.search(r'# (\d+)', error_message) # Parse the error message for the atom index throwing the error
    atom_index = int(match.group(1))
    rdkit, u = custom_sanitization(pdb_ID, rdkit, u, atom_index)
-'''
+```
 
 And you're done! `rdkit` and `u` should now be cleaned and ready for analysis. Take a look at `RDKits_SanitizationFlags_andExplanations.txt` for an explanation of RDKit's various sanitization operations. We apply ALL in this implementation. 
