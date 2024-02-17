@@ -15,6 +15,12 @@ The current approach uses a recursive call to `custom_sanitization()` with a dep
 
 ###########################################################################################################
 # USAGE:
+```
+import json
+import re
+from rdkit import Chem
+```
+
 In your process of digitizing your first molecule and performing analysis on it with either RDKit of MDAnalysis, you will do something like: 
 ```
  # Create MD Universe objects from pdb_file. Utilze the in-built method for determining covalent bonds
