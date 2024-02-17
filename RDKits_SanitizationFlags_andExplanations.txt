@@ -1,0 +1,21 @@
+RDKit provides several sanitization flags that control specific sanitization steps during the molecule creation or sanitization process. Here are the common sanitization flags in RDKit along with their explanations:
+
+SANITIZE_ALL: This flag performs all available sanitization steps on the molecule. It includes cleanup, valence checks, hydrogen addition, aromaticity perception, chirality assignment, protonation state adjustment, formal charge adjustment, and stereochemistry perception.
+
+SANITIZE_CLEANUP: This flag performs general cleanup operations on the molecule, including removing explicit hydrogens, normalizing atom and bond orders, and standardizing aromatic systems.
+
+SANITIZE_FINDRADICALS: This flag identifies and corrects radical electrons in the molecule. It helps to ensure that the molecule does not have unpaired electron spins.
+
+SANITIZE_PROPERTIES: This flag checks and adjusts various atomic properties, including valence and formal charges, to conform to chemical rules and expectations.
+
+SANITIZE_SYMMRINGS: This flag identifies and resolves symmetry-related issues in ring systems. It helps to ensure that symmetry-related atoms in rings have consistent properties.
+
+SANITIZE_KEKULIZE: This flag performs kekulization, which converts non-Kekulé bond representations to Kekulé forms. It ensures that aromatic bonds are represented correctly as alternating single and double bonds.
+
+SANITIZE_CLEANUPCHIRALITY: This flag adjusts the chirality of chiral centers to match the expected stereochemistry based on the connectivity and other available information.
+
+SANITIZE_CLEANUPCHIRALITYRINGS: This flag adjusts the chirality of chiral centers specifically in ring systems. It helps to ensure that the chirality of ring-based stereocenters is consistent.
+
+SANITIZE_ADJUSTHS: This flag adjusts the hydrogen counts of atoms based on their valence and connectivity. It ensures that the hydrogen count is consistent with the expected valence.
+
+These are some of the commonly used sanitization flags in RDKit. By selectively enabling or disabling these flags, you can control the specific sanitization steps performed during molecule creation or sanitization, tailoring the process to your specific needs and requirements.
